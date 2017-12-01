@@ -4,6 +4,7 @@
   "description": "A lscache like api which is based on indexedDB.",
   "main": "index.js",
   "scripts": {
+    "build": "rm -rf dist && mkdir dist && browserify lib/index.js > dist/index.js -t [ babelify --presets [ env ] ] && exit 0",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -23,5 +24,11 @@
   "homepage": "https://github.com/sach2211/idbcache#readme",
   "dependencies": {
     "idb-keyval": "^2.3.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babelify": "^8.0.0",
+    "browserify": "^14.5.0"
   }
 }
