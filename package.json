@@ -4,7 +4,8 @@
   "description": "A lscache like api which is based on indexedDB.",
   "main": "dist/index.js",
   "scripts": {
-    "build": "rm -rf dist && mkdir dist && browserify lib/index.js > dist/index.js -t [ babelify --presets [ env ] ] && exit 0",
+    "build": "rm -rf dist && babel lib --presets babel-preset-env --out-dir dist && exit 0",
+    "prepublish": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -26,9 +27,8 @@
     "idb-keyval": "^2.3.0"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
-    "babel-preset-env": "^1.6.1",
-    "babelify": "^8.0.0",
-    "browserify": "^14.5.0"
+    "babel-preset-env": "^1.6.1"
   }
 }
