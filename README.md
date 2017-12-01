@@ -9,10 +9,10 @@ This is a module which tries to mimic lscache api, but with indexedDB storage.
 
 2.) import it in your file.
 
-<code>import idb from 'idbcache'</code> 
+<code>import idbcache from 'idbcache'</code> 
 OR,
 
-<code>var idb = require('idbcache')</code>
+<code>var idbcache = require('idbcache')</code>
 
 ## Available API's are - 
 
