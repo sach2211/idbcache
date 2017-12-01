@@ -2,6 +2,18 @@
 
 This is a module which tries to mimic lscache api, but with indexedDB storage.
 
+## Usage
+
+1.)  Install the package
+<code>npm install idbcache</code>
+
+2.) import it in your file.
+
+<code>import idb from 'idbcache'</code> 
+OR,
+
+<code>var idb = require('idbcache')</code>
+
 ## Available API's are - 
 
 ### 1.) &nbsp; set(key, val, time)
