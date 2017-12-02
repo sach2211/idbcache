@@ -9,10 +9,10 @@ This is a module which tries to mimic lscache api, but with indexedDB storage.
 
 2.) import it in your file.
 
-<code>import idb from 'idbcache'</code> 
+<code>import idbcache from 'idbcache'</code> 
 OR,
 
-<code>var idb = require('idbcache')</code>
+<code>var idbcache = require('idbcache')</code>
 
 ## Available API's are - 
 
@@ -21,7 +21,7 @@ OR,
 Set a value with name 'key' and value 'val' for 'time' minutes.
 
 #### eg.
-<code>idbCache.set('hello', 'world', 2);</code>
+<code>idbcache.set('hello', 'world', 2);</code>
 
 This will set the key 'hello' with value 'world' for 2mins.
 
@@ -34,7 +34,7 @@ Can be used to retrieve a value store against a particular key.
 
 #### eg. 
 <code>
-idbCache.get('hello').then(val => console.log(val));
+idbcache.get('hello').then(val => console.log(val));
 
 // logs: "world" 
 </code>
@@ -48,7 +48,7 @@ Can be used to delete a particular key.
 
 #### eg. 
 <code>
-idbCache.remove('hello');
+idbcache.remove('hello');
 
 // deletes: Key titled hello from DB.
 </code>
@@ -60,5 +60,5 @@ Can be used to flush the entire key-value store.
 
 #### eg. 
 <code>
-idbCache.flush();
+idbcache.flush();
 </code>
