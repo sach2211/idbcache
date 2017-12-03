@@ -66,7 +66,6 @@ var IDBCache = function () {
           resolve();
         });
       });
-      // return idb.get(key)
     }
   }, {
     key: "remove",

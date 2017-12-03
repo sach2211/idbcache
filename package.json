@@ -2,9 +2,9 @@
   "name": "idbcache",
   "version": "0.0.6",
   "description": "A lscache like api which is based on indexedDB.",
-  "main": "dist/index.js",
+  "main": "dist/index-min.js",
   "scripts": {
-    "build": "rm -rf dist && babel lib --presets babel-preset-env --out-dir dist && exit 0",
+    "build": "rm -rf dist && babel lib --presets babel-preset-env --out-dir dist && uglifyjs dist/index.js --screw-ie8 -mc --output dist/index-min.js && exit 0",
     "prepublish": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -29,6 +29,7 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
-    "babel-preset-env": "^1.6.1"
+    "babel-preset-env": "^1.6.1",
+    "uglify-js": "^2.7.0"
   }
 }
