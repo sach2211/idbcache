@@ -44,27 +44,33 @@ var IDBCache = function () {
 
       // Get the key;
       return new Promise(function (resolve) {
-        var timeStampKey = "__" + key + "ExpiryTimeStamp";
-        _idbKeyval2.default.get(timeStampKey).then(function (v) {
-          if (v > Date.now()) {
-            _idbKeyval2.default.get(key).then(function (val) {
-              // value to return;
-              resolve(val);
-            }).catch(function (e) {
-              // Fetching the key failed.
-              // resolve with nothing.
+        if (_this2.isInternalExpiryTimestampKey(key)) {
+          _idbKeyval2.default.get(key).then(function (v) {
+            resolve(v);
+          });
+        } else {
+          var timeStampKey = "__" + key + "ExpiryTimeStamp";
+          _idbKeyval2.default.get(timeStampKey).then(function (v) {
+            if (v > Date.now()) {
+              _idbKeyval2.default.get(key).then(function (val) {
+                // value to return;
+                resolve(val);
+              }).catch(function (e) {
+                // Fetching the key failed.
+                // resolve with nothing.
+                resolve();
+              });
+            } else {
+              // Key has expired => delete it and return null;
+              _this2.remove(key);
               resolve();
-            });
-          } else {
-            // Key has expired => delete it and return null;
-            _this2.remove(key);
+            }
+          }).catch(function (e) {
+            // Fetching the timestamp key failed;
+            // resolve with nothing.
             resolve();
-          }
-        }).catch(function (e) {
-          // Fetching the timestamp key failed;
-          // resolve with nothing.
-          resolve();
-        });
+          });
+        }
       });
     }
   }, {
