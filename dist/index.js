@@ -40,8 +40,33 @@ var IDBCache = function () {
   }, {
     key: "get",
     value: function get(key) {
+      var _this2 = this;
+
       // Get the key;
-      return _idbKeyval2.default.get(key);
+      return new Promise(function (resolve) {
+        var timeStampKey = "__" + key + "ExpiryTimeStamp";
+        _idbKeyval2.default.get(timeStampKey).then(function (v) {
+          if (v > Date.now()) {
+            _idbKeyval2.default.get(key).then(function (val) {
+              // value to return;
+              resolve(val);
+            }).catch(function (e) {
+              // Fetching the key failed.
+              // resolve with nothing.
+              resolve();
+            });
+          } else {
+            // Key has expired => delete it and return null;
+            _this2.remove(key);
+            resolve();
+          }
+        }).catch(function (e) {
+          // Fetching the timestamp key failed;
+          // resolve with nothing.
+          resolve();
+        });
+      });
+      // return idb.get(key)
     }
   }, {
     key: "remove",
@@ -79,12 +104,12 @@ var IDBCache = function () {
   }, {
     key: "getAllInternalTimestampKeys",
     value: function getAllInternalTimestampKeys() {
-      var _this2 = this;
+      var _this3 = this;
 
       return new Promise(function (resolve, reject) {
-        _this2.all().then(function (keys) {
+        _this3.all().then(function (keys) {
           var internalKeys = keys.filter(function (thisKey) {
-            return _this2.isInternalExpiryTimestampKey(thisKey) ? thisKey : null;
+            return _this3.isInternalExpiryTimestampKey(thisKey) ? thisKey : null;
           });
           resolve(internalKeys);
         }).catch(function (e) {
@@ -95,12 +120,12 @@ var IDBCache = function () {
   }, {
     key: "removeExpiredKeys",
     value: function removeExpiredKeys() {
-      var _this3 = this;
+      var _this4 = this;
 
       this.getAllInternalTimestampKeys().then(function (keys) {
         keys.map(function (thisKey) {
-          _this3.get(thisKey).then(function (val) {
-            return Date.now() > val ? _this3.remove(thisKey) : null;
+          _this4.get(thisKey).then(function (val) {
+            return Date.now() > val ? _this4.remove(thisKey) : null;
           });
         });
       });
