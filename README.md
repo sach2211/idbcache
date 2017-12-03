@@ -25,8 +25,6 @@ Set a value with name 'key' and value 'val' for 'time' minutes.
 
 This will set the key 'hello' with value 'world' for 2mins.
 
-#### Returns:
-A promise
 
 ### 2.) &nbsp; get(key)
 
