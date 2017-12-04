@@ -12,7 +12,7 @@ This is a module which tries to mimic lscache api, but with indexedDB storage.
 <code>import idbcache from 'idbcache'</code> 
 OR,
 
-<code>var idbcache = require('idbcache')</code>
+<code>var idbcache = require('idbcache').default</code>
 
 ## Available API's are - 
 
