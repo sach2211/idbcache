@@ -1,6 +1,6 @@
 {
   "name": "idbcache",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "A lscache like api which is based on indexedDB.",
   "main": "dist/idbcache.js",
   "scripts": {
