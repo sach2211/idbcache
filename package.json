@@ -15,7 +15,13 @@
   "keywords": [
     "indexdb",
     "lscache",
-    "idbkeyval"
+    "idbkeyval",
+    "idb",
+    "indexeddb",
+    "store",
+    "keyval",
+    "localstorage",
+    "storage"
   ],
   "author": "sach11",
   "license": "MIT",
